@@ -34,7 +34,12 @@
   nav .links a { color:#f3e3b0; text-decoration:none; font-size:14px; font-weight:500; }
   nav .links a:hover { color:#fff; }
   nav .btns { display:flex; gap:8px; }
-  @media (max-width:760px) { nav .links { display:none; } nav .btns { margin-left:auto; } }
+  @media (max-width:760px) {
+    nav .links { display:none; } nav .btns { margin-left:auto; gap:6px; }
+    nav { padding-left:12px; padding-right:12px; padding-bottom:8px; }
+    nav .in { gap:8px; } nav img { height:24px; }
+    nav .btn { padding:7px 12px; font-size:12px; white-space:nowrap; border-width:1.5px; }
+  }
   .btn { display:inline-block; padding:11px 20px; border-radius:999px; font:700 14px var(--body); text-decoration:none; cursor:pointer; border:2px solid var(--gold); transition:transform .15s, background .2s; }
   .btn:hover { transform:translateY(-2px); }
   .btn.fill { background:linear-gradient(180deg,var(--gold2),var(--gold)); color:#2a1409; }
