@@ -322,7 +322,7 @@
 
 <script>
   /* ====== EDIT THESE ====== */
-  const EVENT_DATE = "2026-12-28T00:00:00+01:00";   // 28 December 2026, Abuja time (no start time yet, so the countdown runs to the start of the day)
+  const EVENT_DATE = "2026-12-28T16:00:00+01:00";   // 28 December 2026, 4pm Abuja time
   const EVENT_VENUE = "";
   const EVENT_DAY_TEXT = "28th";      // shown until a full EVENT_DATE (with month and year) is set             // e.g. "Venue name, Abuja"
   const MERCH_URL = "merch.html";      // the merch customizer page
@@ -343,6 +343,7 @@
   if (EVENT_DATE) {
     const d = new Date(EVENT_DATE);
     pill(d.toLocaleDateString("en-GB", {weekday:"long", day:"numeric", month:"long", year:"numeric"}));
+    pill("4pm");
     pill(EVENT_VENUE ? "Venue: " + EVENT_VENUE : "Venue: to be confirmed");
     const box = $("count"); box.hidden = false;
     const tick = () => {
