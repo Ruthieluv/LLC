@@ -327,6 +327,7 @@
   const EVENT_DAY_TEXT = "28th";      // shown until a full EVENT_DATE (with month and year) is set             // e.g. "Venue name, Abuja"
   const MERCH_URL = "merch.html";      // the merch customizer page
   const WHATSAPP = "2348081761238";   // contact number, country code first
+  const GROUP_LINK = "https://chat.whatsapp.com/EWDi56lze4P81G3hB9HKDm";   // WhatsApp group invite, shown after someone registers
   const MINISTERS = [                 // add people here: { name:"", role:"", img:"photo-url-or-path" }
   ];
   /* ======================== */
@@ -435,7 +436,11 @@
 
   // shown once, right after someone registers and is sent back here
   if (/[?&]registered=1/.test(location.search) || location.hash === "#registered") {
-    const tt = $("toast"); tt.hidden = false; setTimeout(() => { tt.hidden = true; }, 5000);
+    const tt = $("toast"); tt.hidden = false; setTimeout(() => { tt.hidden = true; }, 15000);
+    const a = document.createElement("a");
+    a.href = GROUP_LINK; a.target = "_blank"; a.rel = "noopener"; a.textContent = "Join our WhatsApp group";
+    a.style.cssText = "color:#2a1409;background:#f3d77a;padding:6px 14px;border-radius:999px;margin-left:10px;text-decoration:none;white-space:nowrap";
+    tt.appendChild(a);
     try { history.replaceState(null, "", location.pathname); } catch (e) {}
   }
 
