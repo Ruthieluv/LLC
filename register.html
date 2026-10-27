@@ -43,6 +43,13 @@
   .hp { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
   .err { color:#c62828; font-size:14px; margin:12px 0 0; min-height:1em; }
   :focus-visible { outline:3px solid #3b82f6; outline-offset:2px; }
+  .modal { width:min(440px,calc(100% - 32px)); padding:34px 28px 28px; border:1px solid var(--line); border-radius:20px; background:var(--card); color:var(--fg); text-align:center; box-shadow:0 30px 60px -20px rgba(0,0,0,.6); }
+  .modal::backdrop { background:rgba(20,8,2,.72); }
+  .modal[open] { animation:pop .25s ease; }
+  @keyframes pop { from { opacity:0; transform:translateY(12px) scale(.97); } to { opacity:1; transform:none; } }
+  .modal h2 { font:400 clamp(32px,7vw,42px)/1.05 var(--head); letter-spacing:.02em; margin:0 0 14px; }
+  .modal p { margin:0 0 8px; font-size:16px; color:var(--mut); }
+  .modal .btn { min-width:160px; margin-top:18px; font-size:16px; padding:13px 28px; }
 </style>
 </head>
 <body>
@@ -73,19 +80,36 @@
   </div>
 </main>
 
+<dialog class="modal" id="thanks" aria-labelledby="thanksTitle">
+  <h2 id="thanksTitle">Thank you for registering.</h2>
+  <p>We cannot wait to have you in the room.</p>
+  <p>Your seat is reserved with love.</p>
+  <p>The venue will be sent to you upon confirmation.</p>
+  <button class="btn fill" type="button" id="thanksOk">Okay</button>
+</dialog>
+
 <script>
-  const HOME_URL = "index.html?registered=1";   // where people land straight after registering
+  const HOME_URL = "index.html";   // where people land after closing the thank-you popup
   const form = document.getElementById("regForm");
+  const thanks = document.getElementById("thanks");
+  const goHome = () => { window.location.href = HOME_URL; };
+  document.getElementById("thanksOk").addEventListener("click", goHome);
+  thanks.addEventListener("cancel", e => { e.preventDefault(); goHome(); });   // Escape key
+  thanks.addEventListener("click", e => {   // tap outside the popup
+    const r = thanks.getBoundingClientRect();
+    if (e.target === thanks && (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom)) goHome();
+  });
   form.addEventListener("submit", async e => {
     e.preventDefault();
     const btn = form.querySelector("button[type=submit]"), fd = new FormData(form);
     btn.disabled = true; btn.textContent = "Sending..."; document.getElementById("regErr").textContent = "";
     try {
-      if (location.hash !== "#demo") {   // add #demo to the page address to test the redirect without sending
+      if (location.hash !== "#demo") {   // add #demo to the page address to test the popup without sending
         const res = await fetch("/", { method:"POST", headers:{ "Content-Type":"application/x-www-form-urlencoded" }, body:new URLSearchParams(fd).toString() });
         if (!res.ok) throw new Error(res.status);
       }
-      window.location.href = HOME_URL;
+      form.reset(); btn.textContent = "Registered";
+      thanks.showModal();
     } catch (err) {
       document.getElementById("regErr").textContent = "Sorry, that did not go through. Please try again, or message us on WhatsApp.";
       btn.disabled = false; btn.textContent = "Register my interest";
