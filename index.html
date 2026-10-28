@@ -359,7 +359,7 @@
   const item = (label, main, sub) => { const d = document.createElement("div"); d.className = "di"; d.innerHTML = `<span class="lb">${label}</span><div class="v"><b></b><i></i></div>`; d.querySelector("b").textContent = main; d.querySelector("i").textContent = sub || ""; det.appendChild(d); };
   if (EVENT_DATE) {
     const d = new Date(EVENT_DATE), tz = {timeZone:"Africa/Lagos"};
-    item("Date", d.toLocaleDateString("en-GB", {...tz, day:"numeric", month:"long", year:"numeric"}), d.toLocaleDateString("en-GB", {...tz, weekday:"long"}));
+    item("Date", d.toLocaleDateString("en-GB", {...tz, day:"numeric", month:"short", year:"numeric"}), d.toLocaleDateString("en-GB", {...tz, weekday:"long"}));
     item("Time", d.toLocaleTimeString("en-US", {...tz, hour:"numeric", minute:"2-digit"}), "Abuja time");
     item("Venue", EVENT_VENUE || "To be confirmed", "Abuja, Nigeria");
     const box = $("count"); box.hidden = false;
