@@ -341,7 +341,8 @@
 <script>
   /* ====== EDIT THESE ====== */
   const EVENT_DATE = "2026-12-28T16:00:00+01:00";   // 28 December 2026, 4pm Abuja time
-  const EVENT_VENUE = "";
+    const EVENT_VENUE = "The Tigris Studio";
+  const EVENT_VENUE_ADDRESS = "26, Ebitu Ukiwe Street, Jabi, Abuja";
   const EVENT_DAY_TEXT = "28th";      // shown until a full EVENT_DATE (with month and year) is set             // e.g. "Venue name, Abuja"
   const MERCH_URL = "merch.html";      // the merch customizer page
   const WHATSAPP = "2348081761238";   // contact number, country code first
@@ -361,7 +362,7 @@
     const d = new Date(EVENT_DATE), tz = {timeZone:"Africa/Lagos"};
     item("Date", d.toLocaleDateString("en-GB", {...tz, day:"numeric", month:"short", year:"numeric"}), d.toLocaleDateString("en-GB", {...tz, weekday:"long"}));
     item("Time", d.toLocaleTimeString("en-US", {...tz, hour:"numeric", minute:"2-digit"}), "Abuja time");
-    item("Venue", EVENT_VENUE || "To be confirmed", "Abuja, Nigeria");
+    item("Venue", EVENT_VENUE || "To be confirmed", EVENT_VENUE ? EVENT_VENUE_ADDRESS : "Abuja, Nigeria");
     const box = $("count"); box.hidden = false;
     const tick = () => {
       let s = Math.max(0, Math.floor((d - Date.now())/1000));
