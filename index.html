@@ -202,8 +202,9 @@
   .np small { display:block; margin-top:2px; font-size:13px; color:var(--mut); }
   .splink { display:inline-block; margin-top:12px; font-size:14px; font-weight:700; color:var(--fg); text-decoration:underline; text-decoration-color:var(--gold); text-underline-offset:4px; }
   .trhint { font-size:13px; color:var(--mut); margin:6px 0 0; }
-  .toast { position:fixed; left:50%; bottom:calc(24px + env(safe-area-inset-bottom,0px)); transform:translateX(-50%); z-index:80; background:#2a1409; color:#f3d77a; padding:14px 24px; border-radius:999px; font-weight:700; box-shadow:0 14px 34px -10px rgba(0,0,0,.6); animation:lineIn .4s ease; }
+  .toast { position:fixed; left:50%; bottom:calc(24px + env(safe-area-inset-bottom,0px)); transform:translateX(-50%); z-index:80; background:#2a1409; color:#f3d77a; padding:14px 24px; border-radius:999px; font-weight:700; box-shadow:0 14px 34px -10px rgba(0,0,0,.6); animation:toastIn .4s ease; }
   .toast[hidden] { display:none; }
+  @keyframes toastIn { from { opacity:0; transform:translate(-50%,10px); } to { opacity:1; transform:translateX(-50%); } }
   footer { background:#120804; color:#b79c6f; padding:36px 0 44px; text-align:center; font-size:14px; }
   footer img { height:46px; margin:0 auto 14px; }
   footer a { color:var(--gold2); text-decoration:none; }
