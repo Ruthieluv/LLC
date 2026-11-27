@@ -46,7 +46,7 @@
   .modal { width:min(440px,calc(100% - 32px)); padding:34px 28px 28px; border:1px solid var(--line); border-radius:20px; background:var(--card); color:var(--fg); text-align:center; box-shadow:0 30px 60px -20px rgba(0,0,0,.6); }
   .modal::backdrop { background:rgba(20,8,2,.72); }
   .modal[open] { animation:pop .25s ease; }
-  @keyframes pop { from { opacity:0; transform:translateY(12px) scale(.97); } to { opacity:1; transform:none; } }
+  @keyframes pop { from { opacity:0; } to { opacity:1; } }
   .modal h2 { font:400 clamp(32px,7vw,42px)/1.05 var(--head); letter-spacing:.02em; margin:0 0 14px; }
   .modal p { margin:0 0 8px; font-size:16px; color:var(--mut); }
   .modal .btn { min-width:160px; margin-top:18px; font-size:16px; padding:13px 28px; }
